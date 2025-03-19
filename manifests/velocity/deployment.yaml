@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: velocity-proxy
+  labels:
+    app: velocity
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: velocity
+  template:
+    metadata:
+      labels:
+        app: velocity
+    spec:
+      containers:
+      - name: velocity
+        image: velocitypowered/velocity:latest
+        ports:
+        - containerPort: 25565
+        volumeMounts:
+        - name: config-volume
+          mountPath: /server
+      volumes:
+      - name: config-volume
+        emptyDir: {}
