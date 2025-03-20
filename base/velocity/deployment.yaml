@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: velocity
-        image: velocitypowered/velocity:latest
+        image: harbor.runicrealms.com/realm-velocity:latest
         ports:
         - containerPort: 25565
         volumeMounts:

@@ -1,2 +1,4 @@
 resources:
 - velocity/
+patches:
+- path: images.yaml
