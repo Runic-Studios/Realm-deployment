@@ -3,4 +3,4 @@ resources:
 
 images:
 - name: harbor.runicrealms.com/realm-velocity
-  newTag: "latest"
+  newTag: "a8cf98d81a828a4a539dd166fb710d1ffb108f80"
