@@ -2,4 +2,4 @@ resources:
   - velocity/
 images:
   - name: registry.runicrealms.com/build/realm-velocity
-    newTag: "8bd716ef2bef998b90d4b751e68fc58b732a55d4"
+    newTag: "cfcc352"
