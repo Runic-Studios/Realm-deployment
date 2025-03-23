@@ -13,14 +13,7 @@ spec:
         spec:
           containers:
             - name: papermc-gameserver
-              image: marctv/minecraft-papermc-server:latest
-              command: ["/bin/sh"]
-              args: ["-c", "/docker-entrypoint.sh || true; tail -f /dev/null"]
-              env:
-                - name: MEMORYSIZE
-                  value: 4G
-                - name: PAPERMC_FLAGS
-                  value: ""
+              image: itzg/minecraft-server:latest
               resources:
                 requests:
                   memory: 1500Mi
