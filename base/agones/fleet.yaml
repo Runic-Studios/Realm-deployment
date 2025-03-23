@@ -14,6 +14,8 @@ spec:
           containers:
             - name: papermc-gameserver
               image: marctv/minecraft-papermc-server:latest
+              command: ["/bin/sh"]
+              args: ["-c", "/entrypoint.sh || true; tail -f /dev/null"]
               env:
                 - name: MEMORYSIZE
                   value: 4G
