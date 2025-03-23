@@ -7,7 +7,7 @@ spec:
   template:
     spec:
       ports:
-        - name: default
+        - name: minecraft
           containerPort: 25565
       template:
         spec:
@@ -21,8 +21,8 @@ spec:
                   value: ""
               resources:
                 requests:
-                  memory: 1500Mb
+                  memory: 1500Mi
                   cpu: 500m
                 limits:
-                  memory: 4000Gb
+                  memory: 4000Mi
                   cpu: 2000m
