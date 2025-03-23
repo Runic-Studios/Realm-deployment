@@ -1,5 +1,6 @@
 resources:
   - velocity/
+  - agones/
 images:
   - name: registry.runicrealms.com/build/realm-velocity
     newTag: "702d5cc"

@@ -1,0 +1,28 @@
+apiVersion: agones.dev/v1
+kind: Fleet
+metadata:
+  name: realm-fleet
+spec:
+  replicas: 1
+  template:
+    spec:
+      ports:
+        - name: default
+          containerPort: 25565
+      template:
+        spec:
+          containers:
+            - name: papermc-gameserver
+              image: marctv/minecraft-papermc-server:latest
+              env:
+                - name: MEMORYSIZE
+                  value: 4G
+                - name: PAPERMC_FLAGS
+                  value: ""
+              resources:
+                requests:
+                  memory: 1500Mb
+                  cpu: 500m
+                limits:
+                  memory: 4000Gb
+                  cpu: 2000m
