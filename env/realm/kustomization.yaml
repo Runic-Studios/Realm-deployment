@@ -1,3 +1,4 @@
 resources:
-- namespace.yaml
-- ../../base
+  - namespace.yaml
+  - ../../base
+  - velocity/

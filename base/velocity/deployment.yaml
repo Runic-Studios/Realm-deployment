@@ -19,9 +19,3 @@ spec:
         image: registry.runicrealms.com/build/realm-velocity:latest
         ports:
         - containerPort: 25565
-        volumeMounts:
-        - name: config-volume
-          mountPath: /server
-      volumes:
-      - name: config-volume
-        emptyDir: {}
