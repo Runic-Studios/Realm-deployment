@@ -1,8 +1,0 @@
-resources:
-  - velagones-config.yaml
-
-patches:
-  - path: deployment-patch.yaml
-    target:
-      kind: Deployment
-      name: velocity-proxy

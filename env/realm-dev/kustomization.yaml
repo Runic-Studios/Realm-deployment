@@ -1,4 +1,6 @@
 resources:
   - namespace.yaml
   - ../../base
-  - velocity/
+  - velocity-velagones-config.yaml
+patches:
+  - path: velocity-deployment-patch.yaml
