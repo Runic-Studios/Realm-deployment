@@ -6,4 +6,5 @@ data:
   application.conf: |
     velagones {
         game-server-namespace = "realm-dev"
+        max-players-per-server = 20
     }
