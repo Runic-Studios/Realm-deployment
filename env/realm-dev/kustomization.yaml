@@ -1,8 +1,15 @@
 resources:
   - namespace.yaml
   - ../../base
-  - velocity-velagones-config.yaml
   - ingress-route.yaml
 patches:
   - path: velocity-deployment-patch.yaml
   - path: velocity-rbac-patch.yaml
+
+configMapGenerator:
+  - name: velocity-config
+    files:
+      - plugins/velagones/application.conf=config/velocity/plugins/velagones/application.conf
+      - velocity.toml=config/velocity/velocity.toml
+generatorOptions:
+  disableNameSuffixHash: true
