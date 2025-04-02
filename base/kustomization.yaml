@@ -6,4 +6,4 @@ resources:
   - velocity-rbac.yaml
 images:
   - name: registry.runicrealms.com/build/realm-velocity
-    newTag: "82e8e40"
+    newTag: "882a7c9"
