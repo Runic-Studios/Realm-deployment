@@ -5,4 +5,3 @@ metadata:
 data:
   application.properties: |
     velagones.game-server-namespace=realm-dev
-

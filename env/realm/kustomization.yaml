@@ -4,3 +4,4 @@ resources:
   - velocity-velagones-config.yaml
 patches:
   - path: velocity-deployment-patch.yaml
+  - path: velocity-rbac-patch.yaml
