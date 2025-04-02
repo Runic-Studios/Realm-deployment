@@ -9,8 +9,8 @@ spec:
         - name: velocity
           volumeMounts:
             - name: config-volume
-              mountPath: /opt/velocity/plugins/velagones/application.properties
-              subPath: application.properties
+              mountPath: /opt/velocity/plugins/velagones/application.conf
+              subPath: application.conf
       volumes:
         - name: config-volume
           projected:
@@ -18,5 +18,5 @@ spec:
               - configMap:
                   name: velagones-config
                   items:
-                    - key: application.properties
-                      path: application.properties
+                    - key: application.conf
+                      path: application.conf
