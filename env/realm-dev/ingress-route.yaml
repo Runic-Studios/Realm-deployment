@@ -6,7 +6,7 @@ spec:
   entryPoints:
     - minecraft
   routes:
-    - match: HostSNI(`devplay.runicrealms.com`)
+    - match: HostSNI(`*`)
       services:
         - name: velocity-service
           port: 25565
