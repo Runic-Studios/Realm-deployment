@@ -1,5 +1,9 @@
 resources:
-  - velocity/
+  - agones-fleet.yaml
+  - agones-rbac.yaml
+  - velocity-deployment.yaml
+  - velocity-service.yaml
+  - velocity-rbac.yaml
 images:
   - name: registry.runicrealms.com/build/realm-velocity
-    newTag: "702d5cc"
+    newTag: "6f762be"

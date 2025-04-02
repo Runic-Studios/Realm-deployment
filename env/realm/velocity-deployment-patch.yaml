@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: velocity-proxy
+spec:
+  template:
+    spec:
+      containers:
+        - name: velocity
+          volumeMounts:
+            - name: config-volume
+              mountPath: /opt/velocity/plugins/velagones/application.properties
+              subPath: application.properties
+      volumes:
+        - name: config-volume
+          projected:
+            sources:
+              - configMap:
+                  name: velagones-config
+                  items:
+                    - key: application.properties
+                      path: application.properties

@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: velagones-config
+data:
+  application.properties: |
+    velagones.game-server-namespace=realm
