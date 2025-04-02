@@ -9,7 +9,11 @@ spec:
         - name: velocity
           volumeMounts:
             - name: config-volume
-              mountPath: /opt/velocity
+              mountPath: /opt/velocity/plugins/velagones/application.conf
+              subPath: plugins-velagones-application.conf
+            - name: config-volume
+              mountPath: /opt/velocity/velocity.toml
+              subPath: velocity.toml
       volumes:
         - name: config-volume
           projected:
