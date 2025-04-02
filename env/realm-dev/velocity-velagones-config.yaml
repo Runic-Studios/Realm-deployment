@@ -3,5 +3,7 @@ kind: ConfigMap
 metadata:
   name: velagones-config
 data:
-  application.properties: |
-    velagones.game-server-namespace=realm-dev
+  application.conf: |
+    velagones {
+        game-server-namespace = "realm-dev"
+    }
