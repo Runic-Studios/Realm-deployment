@@ -5,5 +5,4 @@ metadata:
 data:
   application.properties: |
     velagones.game-server-namespace=realm-dev
-    k8swatcher.config.velagones.resyncPeriod=5000
-    k8swatcher.config.velagones.nsNames=realm-dev
+
