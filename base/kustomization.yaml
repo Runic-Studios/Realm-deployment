@@ -1,6 +1,5 @@
 resources:
   - agones-fleet.yaml
-  - agones-rbac.yaml
   - velocity-deployment.yaml
   - velocity-service.yaml
   - velocity-rbac.yaml
