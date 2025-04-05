@@ -8,4 +8,4 @@ images:
   - name: registry.runicrealms.com/build/realm-velocity
     newTag: "f3015fb"
   - name: registry.runicrealms.com/build/realm-paper
-    newTag: "4a6527c"
+    newTag: "c30631e"
