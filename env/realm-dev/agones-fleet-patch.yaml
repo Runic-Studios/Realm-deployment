@@ -3,12 +3,25 @@ kind: Fleet
 metadata:
   name: realm-fleet
 spec:
+  replicas: 1
   template:
     spec:
       template:
         spec:
+          # Kustomize is fucking annoying and i couldn't figure out after two hours how to get it to allow
+          # me to overlay and not replace values within a CRD
+          # so we just have to copy paste all the config from the base on to here
+          # fuck kustomize why is this so hard
           containers:
             - name: realm-paper
+              image: registry.runicrealms.com/build/realm-paper:latest
+              resources:
+                requests:
+                  memory: 1500Mi
+                  cpu: 500m
+                limits:
+                  memory: 2500Mi
+                  cpu: 1500m
               volumeMounts:
                 - name: config-volume
                   mountPath: /opt/realm/plugins/velagones/application.conf

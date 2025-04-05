@@ -16,7 +16,7 @@ spec:
     spec:
       serviceAccountName: velocity-sa
       containers:
-      - name: velocity
-        image: registry.runicrealms.com/build/realm-velocity:latest
-        ports:
-        - containerPort: 25565
+        - name: velocity
+          image: registry.runicrealms.com/build/realm-velocity:latest
+          ports:
+            - containerPort: 25565

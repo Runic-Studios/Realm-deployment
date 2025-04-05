@@ -16,9 +16,6 @@ spec:
           containers:
             - name: realm-paper
               image: registry.runicrealms.com/build/realm-paper:latest
-              env:
-                - name: EULA
-                  value: "TRUE"
               resources:
                 requests:
                   memory: 1500Mi
