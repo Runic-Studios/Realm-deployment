@@ -11,6 +11,5 @@ configMapGenerator:
     files:
       - plugins-velagones-application.conf=config/velocity/plugins/velagones/application.conf
       - velocity.toml=config/velocity/velocity.toml
-      - forwarding.secret=config/velocity/forwarding.secret
 generatorOptions:
   disableNameSuffixHash: true
