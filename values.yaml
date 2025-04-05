@@ -1,5 +1,4 @@
 namespace: realm
-
 paperFleet:
   name: paper-fleet
   replicas: 1
@@ -22,13 +21,12 @@ paperFleet:
         sources:
           - configMap:
               name: paper-config
-
 velocity:
   deployment:
     name: velocity
     replicas: 1
     image: registry.runicrealms.com/build/realm-velocity
-    tag: latest
+    tag: 9f472f9
     volumeMounts:
       - name: config-volume
         mountPath: /opt/velocity/plugins/velagones/application.conf
@@ -45,6 +43,5 @@ velocity:
   service:
     type: ClusterIP
     port: 25565
-
 ingress:
   entryPoint: realm-dev
