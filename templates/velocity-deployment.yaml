@@ -13,7 +13,7 @@ spec:
       labels:
         app: {{ .Values.velocity.deployment.name }}
     spec:
-      serviceAccountName: default
+      serviceAccountName: velocity-sa
       containers:
         - name: velocity
           image: "{{ .Values.velocity.deployment.image }}:{{ .Values.velocity.deployment.tag }}"
