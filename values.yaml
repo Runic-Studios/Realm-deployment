@@ -26,7 +26,7 @@ velocity:
     name: velocity
     replicas: 1
     image: registry.runicrealms.com/build/realm-velocity
-    tag: 9f472f9
+    tag: fcd8186
     volumeMounts:
       - name: config-volume
         mountPath: /opt/velocity/plugins/velagones/application.conf
