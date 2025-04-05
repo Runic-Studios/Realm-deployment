@@ -4,7 +4,7 @@ metadata:
   name: velocity-tcp
 spec:
   entryPoints:
-    - realm-dev
+    - realm
   routes:
     - match: HostSNI(`*`)
       services:
