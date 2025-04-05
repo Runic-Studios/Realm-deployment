@@ -15,7 +15,7 @@ spec:
         spec:
           containers:
             - name: papermc-gameserver
-              image: registry.runicrealms.com/realm-paper:latest
+              image: registry.runicrealms.com/build/realm-paper:latest
               env:
                 - name: EULA
                   value: "TRUE"
