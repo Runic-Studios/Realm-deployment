@@ -20,6 +20,9 @@ spec:
           ports:
             - containerPort: {{ .Values.velocity.service.port }}
           volumeMounts:
-          {{ toYaml .Values.velocity.deployment.volumeMounts | nindent 12 }}
+            - name: velocity-config
+              mountPath: /overlay  # This will be injected into /opt/velocity by the entrypoint
       volumes:
-      {{ toYaml .Values.velocity.deployment.volumes | nindent 6 }}
+        - name: velocity-config
+          configMap:
+            name: velocity-config

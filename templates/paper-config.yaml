@@ -4,5 +4,9 @@ metadata:
   name: paper-config
   namespace: {{ .Values.namespace }}
 data:
-  plugins-velagones-application.conf: |-
-    {{ .Files.Get "config/paper/plugins/velagones/application.conf" | indent 4 }}
+  plugins-velagones-application.conf:
+{{- range $path, $content := .Files.Glob "config/paper/**" }}
+  {{- $key := $path | trimPrefix "config/paper/" | replace "/" "__" }}
+  {{ $key }}: |-
+{{ toString $content | indent 4 }}
+{{- end }}

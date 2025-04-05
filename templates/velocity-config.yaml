@@ -4,7 +4,8 @@ metadata:
   name: velocity-config
   namespace: {{ .Values.namespace }}
 data:
-  application.conf: |-
-    {{ .Files.Get "config/velocity/plugins/velagones/application.conf" | indent 4 }}
-  velocity.toml: |-
-    {{ .Files.Get "config/velocity/velocity.toml" | indent 4 }}
+{{- range $path, $content := .Files.Glob "config/velocity/**" }}
+  {{- $key := $path | trimPrefix "config/velocity/" | replace "/" "__" }}
+  {{ $key }}: |-
+{{ toString $content | indent 4 }}
+{{- end }}

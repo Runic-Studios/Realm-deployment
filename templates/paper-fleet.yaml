@@ -27,6 +27,9 @@ spec:
                   memory: {{ .Values.paperFleet.resources.limits.memory }}
                   cpu: {{ .Values.paperFleet.resources.limits.cpu }}
               volumeMounts:
-              {{ toYaml .Values.paperFleet.volumeMounts | nindent 16 }}
+                - name: paper-config
+                  mountPath: /overlay # This will be injected into /opt/paper by the entrypoint
           volumes:
-          {{ toYaml .Values.paperFleet.volumes | nindent 12 }}
+            - name: paper-config
+              configMap:
+                name: paper-config
