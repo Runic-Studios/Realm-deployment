@@ -7,3 +7,5 @@ resources:
 images:
   - name: registry.runicrealms.com/build/realm-velocity
     newTag: "a24dc1a"
+  - name: registry.runicrealms.com/build/realm-paper
+    newTag: "4a6527c"
