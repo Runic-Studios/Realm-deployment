@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.velocity.deployment.name }}
+  namespace: {{ .Values.namespace }}
+spec:
+  replicas: {{ .Values.velocity.deployment.replicas }}
+  selector:
+    matchLabels:
+      app: {{ .Values.velocity.deployment.name }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.velocity.deployment.name }}
+    spec:
+      serviceAccountName: default
+      containers:
+        - name: velocity
+          image: "{{ .Values.velocity.deployment.image }}:{{ .Values.velocity.deployment.tag }}"
+          ports:
+            - containerPort: {{ .Values.velocity.service.port }}
+          volumeMounts:
+          {{ toYaml .Values.velocity.deployment.volumeMounts | nindent 12 }}
+      volumes:
+      {{ toYaml .Values.velocity.deployment.volumes | nindent 6 }}

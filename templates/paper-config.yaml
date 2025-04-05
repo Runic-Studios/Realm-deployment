@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: paper-config
+  namespace: {{ .Values.namespace }}
+data:
+  plugins-velagones-application.conf: |-
+    {{ .Files.Get "config/paper/plugins/velagones/application.conf" | indent 4 }}

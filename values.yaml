@@ -1,0 +1,44 @@
+namespace: realm
+
+paperFleet:
+  name: paper-fleet
+  replicas: 1
+  image: registry.runicrealms.com/build/realm-paper
+  tag: latest
+  resources:
+    requests:
+      memory: 1500Mi
+      cpu: 500m
+    limits:
+      memory: 2500Mi
+      cpu: 1500m
+  volumeMounts:
+    - name: config-volume
+      mountPath: /opt/realm/plugins/velagones/application.conf
+      subPath: plugins-velagones-application.conf
+  volumes:
+    - name: config-volume
+      projected:
+        sources:
+          - configMap:
+              name: paper-config
+
+velocity:
+  deployment:
+    name: velocity
+    replicas: 1
+    image: registry.runicrealms.com/build/realm-velocity
+    tag: latest
+    volumeMounts:
+      - name: config-volume
+        mountPath: /opt/velocity/plugins/velagones/application.conf
+        subPath: application.conf
+      - name: config-volume
+        mountPath: /opt/velocity/velocity.toml
+        subPath: velocity.toml
+  service:
+    type: ClusterIP
+    port: 25565
+
+ingress:
+  entryPoint: realm-dev
