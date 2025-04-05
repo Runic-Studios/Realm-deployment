@@ -3,7 +3,7 @@ paperFleet:
   name: paper-fleet
   replicas: 1
   image: registry.runicrealms.com/build/realm-paper
-  tag: latest
+  tag: e0b7c6a
   resources:
     requests:
       memory: 1500Mi
