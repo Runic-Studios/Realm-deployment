@@ -1,10 +1,10 @@
 apiVersion: agones.dev/v1
 kind: Fleet
 metadata:
-  name: {{ .Values.agonesFleet.name }}
+  name: {{ .Values.paperFleet.name }}
   namespace: {{ .Values.namespace }}
 spec:
-  replicas: {{ .Values.agonesFleet.replicas }}
+  replicas: {{ .Values.paperFleet.replicas }}
   template:
     spec:
       health:
@@ -18,15 +18,15 @@ spec:
         spec:
           containers:
             - name: realm-paper
-              image: "{{ .Values.agonesFleet.image }}:{{ .Values.agonesFleet.tag }}"
+              image: "{{ .Values.paperFleet.image }}:{{ .Values.paperFleet.tag }}"
               resources:
                 requests:
-                  memory: {{ .Values.agonesFleet.resources.requests.memory }}
-                  cpu: {{ .Values.agonesFleet.resources.requests.cpu }}
+                  memory: {{ .Values.paperFleet.resources.requests.memory }}
+                  cpu: {{ .Values.paperFleet.resources.requests.cpu }}
                 limits:
-                  memory: {{ .Values.agonesFleet.resources.limits.memory }}
-                  cpu: {{ .Values.agonesFleet.resources.limits.cpu }}
+                  memory: {{ .Values.paperFleet.resources.limits.memory }}
+                  cpu: {{ .Values.paperFleet.resources.limits.cpu }}
               volumeMounts:
-              {{ toYaml .Values.agonesFleet.volumeMounts | nindent 16 }}
+              {{ toYaml .Values.paperFleet.volumeMounts | nindent 16 }}
           volumes:
-          {{ toYaml .Values.agonesFleet.volumes | nindent 12 }}
+          {{ toYaml .Values.paperFleet.volumes | nindent 12 }}
