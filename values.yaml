@@ -36,6 +36,12 @@ velocity:
       - name: config-volume
         mountPath: /opt/velocity/velocity.toml
         subPath: velocity.toml
+    volumes:
+      - name: config-volume
+        projected:
+          sources:
+            - configMap:
+              name: velocity-config
   service:
     type: ClusterIP
     port: 25565
