@@ -4,7 +4,6 @@ metadata:
   name: paper-config
   namespace: {{ .Values.namespace }}
 data:
-  plugins-velagones-application.conf:
 {{- range $path, $content := .Files.Glob "config/paper/**" }}
   {{- $key := $path | trimPrefix "config/paper/" | replace "/" "__" }}
   {{ $key }}: |-
