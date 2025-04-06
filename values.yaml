@@ -11,35 +11,12 @@ paperFleet:
     limits:
       memory: 2500Mi
       cpu: 1500m
-  volumeMounts:
-    - name: config-volume
-      mountPath: /opt/realm/plugins/velagones/application.conf
-      subPath: plugins-velagones-application.conf
-  volumes:
-    - name: config-volume
-      projected:
-        sources:
-          - configMap:
-              name: paper-config
 velocity:
   deployment:
     name: velocity
     replicas: 1
     image: registry.runicrealms.com/build/realm-velocity
     tag: fcd8186
-    volumeMounts:
-      - name: config-volume
-        mountPath: /opt/velocity/plugins/velagones/application.conf
-        subPath: application.conf
-      - name: config-volume
-        mountPath: /opt/velocity/velocity.toml
-        subPath: velocity.toml
-    volumes:
-      - name: config-volume
-        projected:
-          sources:
-            - configMap:
-              name: velocity-config
   service:
     type: ClusterIP
     port: 25565
