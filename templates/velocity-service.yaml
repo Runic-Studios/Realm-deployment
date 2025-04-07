@@ -8,9 +8,11 @@ spec:
   selector:
     app: {{ .Values.velocity.deployment.name }}
   ports:
-    - protocol: TCP
+    - name: minecraft
+      protocol: TCP
       port: {{ .Values.velocity.service.port }}
       targetPort: {{ .Values.velocity.service.port }}
-    - protocol: TCP
+    - name: autoscale
+      protocol: TCP
       port: {{ .Values.velocity.service.autoscalePort }}
       targetPort: {{ .Values.velocity.service.autoscalePort }}
