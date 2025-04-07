@@ -20,5 +20,6 @@ velocity:
   service:
     type: ClusterIP
     port: 25565
+    autoscalePort: 7070
 ingress:
   entryPoint: realm-dev

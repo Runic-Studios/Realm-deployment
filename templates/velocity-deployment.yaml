@@ -18,7 +18,10 @@ spec:
         - name: velocity
           image: "{{ .Values.velocity.deployment.image }}:{{ .Values.velocity.deployment.tag }}"
           ports:
-            - containerPort: {{ .Values.velocity.service.port }}
+            - name: minecraft
+              containerPort: {{ .Values.velocity.service.port }}
+            - name: autoscale
+              containerPort: {{ .Values.velocity.service.autoscalePort }}
           volumeMounts:
             - name: velocity-config
               mountPath: /overlay  # This will be injected into /opt/velocity by the entrypoint

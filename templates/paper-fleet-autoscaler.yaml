@@ -1,0 +1,13 @@
+apiVersion: "autoscaling.agones.dev/v1"
+kind: FleetAutoscaler
+metadata:
+  name: paper-fleet-autoscaler
+spec:
+  fleetName: {{ .Values.paperFleet.name }}
+  policy:
+    type: Webhook
+    webhook:
+      service:
+        name: {{ .Values.velocity.deployment.name }}-svc
+        path: /autoscale
+        port: {{ .Values.velocity.service.autoscalePort }}
