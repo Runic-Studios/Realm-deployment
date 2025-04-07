@@ -11,6 +11,6 @@ spec:
     - protocol: TCP
       port: {{ .Values.velocity.service.port }}
       targetPort: {{ .Values.velocity.service.port }}
-    - protocol: HTTP
+    - protocol: TCP
       port: {{ .Values.velocity.service.autoscalePort }}
       targetPort: {{ .Values.velocity.service.autoscalePort }}
