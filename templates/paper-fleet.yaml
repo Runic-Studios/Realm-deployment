@@ -13,9 +13,14 @@ spec:
         - name: game
           containerPort: 25565
           protocol: TCP
+          container: realm-paper
+          portPolicy: Dynamic
         - name: grpc
           containerPort: 50051
           protocol: TCP
+          contianer: realm-paper
+          portPolicy: None  # Prevents Agones from dynamically allocating a port for gRPC on the node
+
       template:
         spec:
           containers:
