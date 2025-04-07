@@ -12,8 +12,10 @@ spec:
       ports:
         - name: game
           containerPort: 25565
+          protocol: TCP
         - name: grpc
           containerPort: 50051
+          protocol: TCP
       template:
         spec:
           containers:
