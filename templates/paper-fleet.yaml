@@ -39,6 +39,9 @@ spec:
               volumeMounts:
                 - name: paper-config
                   mountPath: /overlay # This will be injected into /opt/paper by the entrypoint
+              env:
+                - name: VELAGONES_GRPC_PORT
+                  value: 50051
           volumes:
             - name: paper-config
               configMap:
