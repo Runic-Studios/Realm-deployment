@@ -7,6 +7,8 @@ spec:
   replicas: {{ .Values.paperFleet.replicas }}
   template:
     spec:
+      health:
+        initialDelaySeconds: 120
       ports:
         - name: game
           containerPort: 25565
