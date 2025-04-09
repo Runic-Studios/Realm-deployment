@@ -2,7 +2,7 @@ selector:
   type: distributed
 
 fleets:
-  - name: game
+  - name: paper-fleet
     serverCapacity: 20
     autoscaler:
       hostPort: 7070
