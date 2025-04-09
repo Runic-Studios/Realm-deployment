@@ -7,8 +7,6 @@ spec:
   replicas: {{ .Values.paperFleet.replicas }}
   template:
     spec:
-      health:
-        disabled: true
       ports:
         - name: game
           containerPort: 25565
@@ -20,8 +18,11 @@ spec:
           protocol: TCP
           container: realm-paper
           portPolicy: None  # Prevents Agones from dynamically allocating a port for gRPC on the node
-
       template:
+        metadata:
+          labels:
+            capacity: 20
+            group: game  # Matches config value
         spec:
           containers:
             - name: realm-paper
