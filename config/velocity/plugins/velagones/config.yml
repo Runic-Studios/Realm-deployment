@@ -1,11 +1,7 @@
-cluster:
-  gameServerNamespace: "realm-dev"
-  paperGrpcPort: 50051
-
 selector:
   type: distributed
 
-serverGroups:
+fleets:
   - name: game
     serverCapacity: 20
     autoscaler:
