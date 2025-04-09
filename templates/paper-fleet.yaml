@@ -21,7 +21,7 @@ spec:
       template:
         metadata:
           labels:
-            capacity: 20
+            capacity: "20"
             group: game  # Matches config value
         spec:
           containers:
