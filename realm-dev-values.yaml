@@ -1,4 +1,7 @@
 namespace: realm-dev
 
+config:
+  env: realm-dev
+
 ingress:
   entryPoint: realm-dev

@@ -22,10 +22,15 @@ spec:
               containerPort: {{ .Values.velocity.service.port }}
             - name: autoscale
               containerPort: {{ .Values.velocity.service.autoscalePort }}
-          volumeMounts:
-            - name: velocity-config
-              mountPath: /overlay  # This will be injected into /opt/velocity by the entrypoint
+          volumeMounts:  # These will be injected into /opt/velocity using Palimpsest in the entrypoint
+            - name: velocity-base-config
+              mountPath: /overlays/base
+            - name: velocity-env-config
+              mountPath: /overlays/env
       volumes:
-        - name: velocity-config
+        - name: velocity-base-config
           configMap:
-            name: velocity-config
+            name: velocity-base-config
+        - name: velocity-env-config
+          configMap:
+            name: velocity-env-config

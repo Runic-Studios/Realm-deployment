@@ -21,10 +21,6 @@ spec:
           container: realm-paper
           portPolicy: None  # Prevents Agones from dynamically allocating a port for gRPC on the node
       template:
-        metadata:
-          labels:
-            capacity: "20"
-            group: game  # Matches config value
         spec:
           containers:
             - name: realm-paper
@@ -36,13 +32,19 @@ spec:
                 limits:
                   memory: {{ .Values.paperFleet.resources.limits.memory }}
                   cpu: {{ .Values.paperFleet.resources.limits.cpu }}
-              volumeMounts:
-                - name: paper-config
-                  mountPath: /overlay # This will be injected into /opt/paper by the entrypoint
+              volumeMounts:  # These will be injected into /opt/paper using Palimpsest by the entrypoint
+                - name: paper-base-config
+                  mountPath: /overlays/base
+                - name: paper-env-config
+                  mountPath: /overlays/env
               env:
                 - name: VELAGONES_GRPC_PORT
                   value: "50051"
           volumes:
-            - name: paper-config
+            - name: paper-base-config
               configMap:
-                name: paper-config
+                name: paper-base-config
+            - name: paper-env-config
+              configMap:
+                name: paper-env-config
+

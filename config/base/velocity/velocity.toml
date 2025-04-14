@@ -10,7 +10,7 @@ motd = "<#09add3>Runic Realms - DevPlay"
 
 # What should we display for the maximum number of players? (Velocity does not support a cap
 # on the number of players online.)
-show-max-players = 20
+show-max-players = 50
 
 # Should we authenticate players with Mojang? By default, this is on.
 online-mode = true
@@ -34,7 +34,7 @@ prevent-client-proxy-connections = false
 #                  unable to implement network level firewalling (on a shared host).
 # - "modern":      Forward player IPs and UUIDs as part of the login process using
 #                  Velocity's native forwarding. Only applicable for Minecraft 1.13 or higher.
-player-info-forwarding-mode = "none"
+player-info-forwarding-mode = "modern"
 
 # If you are using modern or BungeeGuard IP forwarding, configure a file that contains a unique secret here.
 # The file is expected to be UTF-8 encoded and not empty.

@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: velocity-env-config
+  namespace: {{ .Values.namespace }}
+data:
+{{- $envConfigPath := printf "config/env/%s/velocity/**" .Values.config.env }}
+{{- range $path, $content := .Files.Glob $envConfigPath }}
+  {{- $key := $path | trimPrefix (printf "config/env/%s/velocity/" .Values.config.env) | replace "/" "__" }}
+  {{ $key }}: |-
+{{ toString $content | indent 4 }}
+{{- end }}
+
