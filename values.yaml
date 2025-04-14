@@ -16,7 +16,7 @@ velocity:
     name: velocity
     replicas: 1
     image: registry.runicrealms.com/build/realm-velocity
-    tag: "5da127c"
+    tag: "3c7360b"
   service:
     type: ClusterIP
     port: 25565
