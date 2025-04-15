@@ -28,11 +28,9 @@ spec:
             - name: velocity-env-config
               mountPath: /overlays/env
             - name: velocity-forwarding
-              secret:
-                secretName: velocity-forwarding-secret
-                items:
-                  - key: forwarding.secret
-                    path: /opt/velocity/forwarding.secret
+              mountPath: /opt/velocity/forwarding.secret
+              subPath: forwarding.secret
+              readOnly: true
       volumes:
         - name: velocity-base-config
           configMap:
@@ -40,3 +38,9 @@ spec:
         - name: velocity-env-config
           configMap:
             name: velocity-env-config
+        - name: velocity-forwarding
+          secret:
+            secretName: velocity-forwarding-secret
+            items:
+              - key: forwarding.secret
+                path: forwarding.secret
