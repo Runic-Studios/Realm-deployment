@@ -4,9 +4,10 @@ metadata:
   name: velocity-env-config
   namespace: {{ .Values.namespace }}
 data:
-{{- $envConfigPath := printf "config/env/%s/velocity/**" .Values.config.env }}
+{{- $env := .Values.config.env }}
+{{- $envConfigPath := printf "config/env/%s/velocity/**" $env }}
 {{- range $path, $content := .Files.Glob $envConfigPath }}
-  {{- $key := $path | trimPrefix (printf "config/env/%s/velocity/" .Values.config.env) | replace "/" "__" }}
+  {{- $key := $path | trimPrefix (printf "config/env/%s/velocity/" $env) | replace "/" "__" }}
   {{ $key }}: |-
 {{ toString $content | indent 4 }}
 {{- end }}
