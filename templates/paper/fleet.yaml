@@ -37,6 +37,10 @@ spec:
                   mountPath: /overlays/base
                 - name: paper-env-config
                   mountPath: /overlays/env
+                - name: velocity-forwarding
+                  mountPath: /opt/paper/forwarding.secret
+                  subPath: forwarding.secret
+                  readOnly: true
               env:
                 - name: VELAGONES_GRPC_PORT
                   value: "50051"
@@ -47,4 +51,9 @@ spec:
             - name: paper-env-config
               configMap:
                 name: paper-env-config
-
+            - name: velocity-forwarding
+              secret:
+                secretName: velocity-forwarding-secret
+                items:
+                  - key: forwarding.secret
+                    path: forwarding.secret
