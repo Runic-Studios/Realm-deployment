@@ -13,6 +13,11 @@ spec:
       labels:
         app: {{ .Values.velocity.deployment.name }}
     spec:
+      dnsPolicy: None
+      dnsConfig:
+        nameservers:
+          - 1.1.1.1
+          - 8.8.8.8
       serviceAccountName: velocity-sa
       containers:
         - name: velocity
