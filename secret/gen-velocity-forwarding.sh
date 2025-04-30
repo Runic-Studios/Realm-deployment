@@ -17,6 +17,7 @@ kubectl create secret generic velocity-forwarding-secret \
 
 kubeseal \
   --format yaml \
+  --scope namespace-wide \
   --cert pub-cert.pem \
   --controller-name=sealed-secrets \
   --controller-namespace=sealed-secrets \
