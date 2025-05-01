@@ -22,15 +22,6 @@ spec:
           portPolicy: None  # Prevents Agones from dynamically allocating a port for gRPC on the node
       template:
         spec:
-          dnsPolicy: None
-          dnsConfig:
-            nameservers:
-              - 1.1.1.1
-              - 8.8.8.8
-            searches:
-              - {{ .Values.namespace }}.svc.cluster.local
-              - svc.cluster.local
-              - cluster.local
           containers:
             - name: realm-paper
               image: "{{ .Values.paperFleet.image }}:{{ .Values.paperFleet.tag }}"
