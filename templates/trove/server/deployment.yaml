@@ -35,3 +35,26 @@ spec:
               value: "trove"
             - name: "TROVE_SERVER_PORT"
               value: "{{ .Values.trove.server.port }}"
+      initContainers:
+        - name: scylladb-schema-init
+          image: nuvo/docker-cqlsh:latest
+          env:
+            - name: CQLSH_HOST
+              value: "trove-scylladb"
+            - name: CQLSH_PORT
+              value: "{{ .Values.trove.scylladb.port }}"
+          command: ["/bin/sh", "-c"]
+          args:
+            - |
+              echo "Waiting for ScyllaDB to be ready...";
+              until cqlsh -e 'describe cluster'; do sleep 2; done;
+              echo "Applying schema...";
+              cqlsh -f /init/schema.cql;
+              echo "Done. Stopping...";
+          volumeMounts:
+            - name: cql-schema
+              mountPath: /init
+      volumes:
+        - name: cql-schema
+          configMap:
+            name: trove-server-init-cql

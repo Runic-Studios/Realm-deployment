@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: trove-scylladb-init-cql
+  name: trove-server-init-cql
 data:
   schema.cql: |
     CREATE KEYSPACE IF NOT EXISTS trove
