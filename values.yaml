@@ -24,7 +24,7 @@ trove:
   server:
     image:
       repository: registry.runicrealms.com/build/trove-server
-      tag: latest
+      tag: 14593e9
     resources:
       requests:
         cpu: "250m"
