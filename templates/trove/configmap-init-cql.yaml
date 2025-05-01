@@ -4,6 +4,12 @@ metadata:
   name: trove-scylladb-init-cql
 data:
   schema.cql: |
+    CREATE KEYSPACE IF NOT EXISTS trove
+    WITH replication = {
+      'class': 'SimpleStrategy',
+      'replication_factor': 1
+    };
+    USE trove;
     CREATE TABLE IF NOT EXISTS players (
         user_id UUID PRIMARY KEY,
         schema_version TEXT,
