@@ -14,12 +14,23 @@ paperFleet:
 velocity:
   deployment:
     name: velocity
-    replicas: 1
     image: registry.runicrealms.com/build/realm-velocity
     tag: "1119c97"
   service:
     type: ClusterIP
     port: 25565
     autoscalePort: 7070
+trove:
+  server:
+    image:
+      repository: registry.runicrealms.com/build/trove-server
+      tag: latest
+    resources:
+      requests:
+        cpu: "250m"
+        memory: "256Mi"
+      limits:
+        cpu: "500m"
+        memory: "512Mi"
 ingress:
   entryPoint: realm-dev

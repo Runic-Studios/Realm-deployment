@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: trove-scylladb
+spec:
+  serviceName: trove-scylladb
+  replicas: 1
+  selector:
+    matchLabels:
+      app: trove-scylladb
+  template:
+    metadata:
+      labels:
+        app: trove-scylladb
+    spec:
+      containers:
+        - name: scylla
+          image: scylladb/scylla:5.2
+          ports:
+            - containerPort: 9042
+              name: cql
+      volumes:
+        - name: cql-schema
+          configMap:
+            name: trove-scylladb-init-cql
