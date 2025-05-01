@@ -14,7 +14,7 @@ spec:
             - name: CQLSH_HOST
               value: trove-scylladb
             - name: CQLSH_PORT
-              value: "9042"
+              value: "{{ .Values.trove.scylladb.port }}"
           command: ["/bin/sh", "-c"]
           args:
             - |

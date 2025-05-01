@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: trove-server
-          image: "{{ .Values.trove.server.image.repository }}:{{ .Values.trove.server.image.tag }}"
+          image: "{{ .Values.trove.server.image }}:{{ .Values.trove.server.tag }}"
           resources:
             requests:
               cpu: {{ .Values.trove.server.resources.requests.cpu }}
@@ -25,7 +25,7 @@ spec:
               cpu: {{ .Values.trove.server.resources.limits.cpu }}
               memory: {{ .Values.trove.server.resources.limits.memory }}
           ports:
-            - containerPort: 80
+            - containerPort: {{ .Values.trove.server.port }}
           env:
             - name: "SCYLLA_HOSTS"
               value: "trove-scylladb"
@@ -34,4 +34,4 @@ spec:
             - name: "SCYLLA_KEYSPACE"
               value: "trove"
             - name: "TROVE_SERVER_PORT"
-              value: "9090"
+              value: "{{ .Values.trove.server.port }}"

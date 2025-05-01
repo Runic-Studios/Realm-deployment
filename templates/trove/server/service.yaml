@@ -7,6 +7,6 @@ spec:
     app: trove-server
   ports:
     - protocol: TCP
-      port: 9090
-      targetPort: 9090
+      port: {{ .Values.trove.server.port }}
+      targetPort: {{ .Values.trove.server.port }}
   type: ClusterIP
