@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: trove-scylladb
+spec:
+  serviceName: trove-scylladb
+  replicas: 1
+  selector:
+    matchLabels:
+      app: trove-scylladb
+  template:
+    metadata:
+      labels:
+        app: trove-scylladb
+    spec:
+      containers:
+        - name: scylla
+          image: scylladb/scylla:5.2
+          ports:
+            - containerPort: 9042
+              name: cql
+      initContainers:
+        - name: init-cql
+          image: bitnami/cqlsh:latest
+          command: ["/bin/bash", "-c"]
+          args:
+            - |
+              echo "Waiting for ScyllaDB to be ready...";
+              until cqlsh trove-scylladb 9042 -e 'describe cluster'; do sleep 2; done;
+              echo "Applying schema...";
+              cqlsh trove-scylladb 9042 -f /init/schema.cql
+          volumeMounts:
+            - name: cql-schema
+              mountPath: /init
+      volumes:
+        - name: cql-schema
+          configMap:
+            name: trove-scylladb-init-cql

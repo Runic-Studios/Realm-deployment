@@ -1,0 +1,36 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: trove-scylladb-init-cql
+data:
+  schema.cql: |
+    CREATE TABLE IF NOT EXISTS players (
+        user_id UUID PRIMARY KEY,
+        schema_version TEXT,
+        achievements BLOB,
+        bank BLOB,
+        gathering BLOB,
+        mounts BLOB,
+        settings BLOB,
+        traits BLOB
+    );
+
+    CREATE TABLE IF NOT EXISTS characters (
+        user_id UUID,
+        slot INT,
+        schema_version TEXT,
+        inventory BLOB,
+        profession BLOB,
+        quests BLOB,
+        skills BLOB,
+        spells BLOB,
+        traits BLOB,
+        PRIMARY KEY (user_id, slot)
+    );
+
+    CREATE TABLE IF NOT EXISTS user_locks (
+        user_id UUID PRIMARY KEY,
+        server_id TEXT,
+        last_renewed TIMESTAMP,
+        expires_at TIMESTAMP
+    );
