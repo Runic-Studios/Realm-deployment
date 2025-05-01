@@ -21,14 +21,19 @@ spec:
               name: cql
       initContainers:
         - name: init-cql
-          image: bitnami/cqlsh:latest
+          image: nuvo/docker-cqlsh:latest
+          env:
+            - name: CQLSH_HOST
+              value: trove-scylladb
+            - name: CQLSH_PORT
+              value: "9042"
           command: ["/bin/bash", "-c"]
           args:
             - |
               echo "Waiting for ScyllaDB to be ready...";
               until cqlsh trove-scylladb 9042 -e 'describe cluster'; do sleep 2; done;
               echo "Applying schema...";
-              cqlsh trove-scylladb 9042 -f /init/schema.cql
+              cqlsh -f /init/schema.cql
           volumeMounts:
             - name: cql-schema
               mountPath: /init
