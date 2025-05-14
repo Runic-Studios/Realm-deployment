@@ -9,7 +9,7 @@ paperFleet:
       memory: 2000Mi
       cpu: 500m
     limits:
-      memory: 4000Mi
+      memory: 5000Mi
       cpu: 1500m
 velocity:
   deployment:
