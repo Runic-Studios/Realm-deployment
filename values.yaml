@@ -6,10 +6,10 @@ paperFleet:
   tag: "cb21409"
   resources:
     requests:
-      memory: 1500Mi
+      memory: 2000Mi
       cpu: 500m
     limits:
-      memory: 2500Mi
+      memory: 4000Mi
       cpu: 1500m
 velocity:
   deployment:
