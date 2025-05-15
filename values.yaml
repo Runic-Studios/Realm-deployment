@@ -8,10 +8,10 @@ paperFleet:
   resources:
     requests:
       memory: 6500Mi
-      cpu: 500m
+      cpu: 1000m
     limits:
       memory: 8000Mi
-      cpu: 1500m
+      cpu: 2000m
   jvm:
     memory: 6500
 velocity:
