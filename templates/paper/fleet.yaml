@@ -46,6 +46,8 @@ spec:
                   value: "50051"
                 - name: DEBUGGER_ENABLED
                   value: "{{ .Values.paperFleet.debugger }}"
+                - name: JVM_MEMORY
+                  value: "{{ .Values.paperFleet.jvm.memory }}"
           volumes:
             - name: paper-base-config
               configMap:

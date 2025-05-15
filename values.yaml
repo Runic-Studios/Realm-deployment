@@ -12,6 +12,8 @@ paperFleet:
     limits:
       memory: 5000Mi
       cpu: 1500m
+  jvm:
+    memory: 4500
 velocity:
   deployment:
     name: velocity
