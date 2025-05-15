@@ -4,6 +4,7 @@ paperFleet:
   replicas: 1
   image: registry.runicrealms.com/build/realm-paper
   tag: "f1a926a"
+  debugger: "0"
   resources:
     requests:
       memory: 2000Mi

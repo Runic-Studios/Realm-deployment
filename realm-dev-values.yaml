@@ -5,3 +5,6 @@ config:
 
 ingress:
   entryPoint: realm-dev
+
+paperFleet:
+  debugger: "1"

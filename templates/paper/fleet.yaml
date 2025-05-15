@@ -44,6 +44,8 @@ spec:
               env:
                 - name: VELAGONES_GRPC_PORT
                   value: "50051"
+                - name: DEBUGGER_ENABLED
+                  value: {{ .Values.paperFleet.debugger }}
           volumes:
             - name: paper-base-config
               configMap:
