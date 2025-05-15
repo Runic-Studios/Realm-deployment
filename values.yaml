@@ -7,13 +7,13 @@ paperFleet:
   debugger: "0"
   resources:
     requests:
-      memory: 5000Mi
+      memory: 6500Mi
       cpu: 500m
     limits:
-      memory: 6500Mi
+      memory: 8000Mi
       cpu: 1500m
   jvm:
-    memory: 6000
+    memory: 6500
 velocity:
   deployment:
     name: velocity
