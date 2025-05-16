@@ -30,8 +30,10 @@ spec:
           volumeMounts:  # These will be injected into /opt/velocity using Palimpsest in the entrypoint
             - name: velocity-base-config
               mountPath: /overlays/base
+              readOnly: true
             - name: velocity-env-config
               mountPath: /overlays/env
+              readOnly: true
             - name: velocity-forwarding
               mountPath: /opt/velocity/forwarding.secret
               subPath: forwarding.secret
@@ -40,16 +42,13 @@ spec:
         - name: velocity-base-config
           configMap:
             name: velocity-base-config
-          readOnly: true
         - name: velocity-env-config
           configMap:
             name: velocity-env-config
-          readOnly: true
         - name: velocity-forwarding
           secret:
             secretName: velocity-forwarding-secret
             items:
               - key: forwarding.secret
                 path: forwarding.secret
-          readOnly: true
 
