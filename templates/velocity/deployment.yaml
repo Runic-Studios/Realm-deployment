@@ -40,12 +40,16 @@ spec:
         - name: velocity-base-config
           configMap:
             name: velocity-base-config
+          readOnly: true
         - name: velocity-env-config
           configMap:
             name: velocity-env-config
+          readOnly: true
         - name: velocity-forwarding
           secret:
             secretName: velocity-forwarding-secret
             items:
               - key: forwarding.secret
                 path: forwarding.secret
+          readOnly: true
+

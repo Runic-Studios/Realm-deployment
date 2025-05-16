@@ -41,6 +41,8 @@ spec:
                   mountPath: /opt/paper/forwarding.secret
                   subPath: forwarding.secret
                   readOnly: true
+                - name: world
+                  mountPath: /mnt/world
               env:
                 - name: VELAGONES_GRPC_PORT
                   value: "50051"
@@ -52,12 +54,19 @@ spec:
             - name: paper-base-config
               configMap:
                 name: paper-base-config
+              readOnly: true
             - name: paper-env-config
               configMap:
                 name: paper-env-config
+              readOnly: true
             - name: velocity-forwarding
               secret:
                 secretName: velocity-forwarding-secret
                 items:
                   - key: forwarding.secret
                     path: forwarding.secret
+              readOnly: true
+            - name: world
+              persistentVolumeClaim:
+                claimName: world-pvc
+                readOnly: true
