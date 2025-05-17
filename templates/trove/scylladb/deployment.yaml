@@ -19,7 +19,15 @@ spec:
           ports:
             - containerPort: {{ .Values.trove.scylladb.port }}
               name: cql
-      volumes:
-        - name: cql-schema
-          configMap:
-            name: trove-scylladb-init-cql
+          volumeMounts:
+            - name: scylla-data
+              mountPath: /var/lib/scylla
+      volumeClaimTemplates:
+        - metadata:
+            name: scylla-data
+          spec:
+            accessModes: ["ReadWriteOnce"]
+            storageClassName: trove-scylladb-storage
+            resources:
+              requests:
+                storage: 5Gi
