@@ -22,12 +22,12 @@ spec:
           volumeMounts:
             - name: scylla-data
               mountPath: /var/lib/scylla
-    volumeClaimTemplates:
-      - metadata:
-          name: scylla-data
-        spec:
-          accessModes: ["ReadWriteOnce"]
-          storageClassName: trove-scylladb-storage
-          resources:
-            requests:
-              storage: 5Gi
+  volumeClaimTemplates:
+    - metadata:
+        name: scylla-data
+      spec:
+        accessModes: ["ReadWriteOnce"]
+        storageClassName: trove-scylladb-storage
+        resources:
+          requests:
+            storage: 5Gi
