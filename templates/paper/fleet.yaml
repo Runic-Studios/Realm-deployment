@@ -8,7 +8,7 @@ spec:
   template:
     spec:
       health:
-        initialDelaySeconds: 240
+        initialDelaySeconds: 120
       ports:
         - name: game
           containerPort: 25565
