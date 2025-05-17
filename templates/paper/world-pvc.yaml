@@ -5,10 +5,10 @@ metadata:
   namespace: {{ .Values.namespace }}
 spec:
   accessModes:
-    - ReadWriteMany
+    - ReadOnlyMany
   resources:
     requests:
       storage: 2Gi
   storageClassName: manual
-  volumeName: world-pv
+  volumeName: world-pv-{{ .Values.namespace }}
 
