@@ -55,6 +55,6 @@ spec:
               - key: forwarding.secret
                 path: forwarding.secret
         - name: realm-velocity-base
-              persistentVolumeClaim:
-                claimName: realm-velocity-base-pvc
-                readOnly: true
+          persistentVolumeClaim:
+            claimName: realm-velocity-base-pvc
+            readOnly: true
