@@ -38,6 +38,9 @@ spec:
               mountPath: /opt/velocity/forwarding.secret
               subPath: forwarding.secret
               readOnly: true
+            - name: realm-velocity-base
+              mountPath: /mnt/realm-velocity-base
+              readOnly: true
       volumes:
         - name: velocity-base-config
           configMap:
@@ -51,4 +54,7 @@ spec:
             items:
               - key: forwarding.secret
                 path: forwarding.secret
-
+        - name: realm-velocity-base
+              persistentVolumeClaim:
+                claimName: realm-velocity-base-pvc
+                readOnly: true

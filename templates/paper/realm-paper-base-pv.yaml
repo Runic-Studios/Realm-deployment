@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: realm-paper-base-pv-{{ .Values.namespace }}
+spec:
+  capacity:
+    storage: 500Mi
+  accessModes:
+    - ReadOnlyMany
+  storageClassName: manual
+  persistentVolumeReclaimPolicy: Retain
+  hostPath:
+    path: /mnt/realm-paper-base
+    type: DirectoryOrCreate

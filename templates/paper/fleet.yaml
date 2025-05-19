@@ -46,6 +46,9 @@ spec:
                 - name: world
                   mountPath: /mnt/world
                   readOnly: true
+                - name: realm-paper-base
+                  mountPath: /mnt/realm-paper-base
+                  readOnly: true
               env:
                 - name: VELAGONES_GRPC_PORT
                   value: "50051"
@@ -69,4 +72,8 @@ spec:
             - name: world
               persistentVolumeClaim:
                 claimName: world-pvc
+                readOnly: true
+            - name: realm-paper-base
+              persistentVolumeClaim:
+                claimName: realm-paper-base-pvc
                 readOnly: true
