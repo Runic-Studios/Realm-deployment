@@ -28,7 +28,7 @@ trove:
     port: 9042
   server:
     image: registry.runicrealms.com/build/trove-server
-    tag: "6f2c5a4"
+    tag: "61b54d9"
     port: 9090
     resources:
       requests:
