@@ -1,0 +1,79 @@
+apiVersion: agones.dev/v1
+kind: Fleet
+metadata:
+  name: {{ .Values.paperFleet.name }}
+  namespace: {{ .Values.namespace }}
+spec:
+  replicas: {{ .Values.paperFleet.replicas }}
+  template:
+    spec:
+      health:
+        initialDelaySeconds: 120
+      ports:
+        - name: game
+          containerPort: 25565
+          protocol: TCP
+          container: realm-paper
+          portPolicy: Dynamic
+        - name: grpc
+          containerPort: 50051
+          protocol: TCP
+          container: realm-paper
+          portPolicy: None  # Prevents Agones from dynamically allocating a port for gRPC on the node
+      template:
+        spec:
+          containers:
+            - name: realm-paper
+              image: "{{ .Values.paperFleet.image }}:{{ .Values.paperFleet.tag }}"
+              resources:
+                requests:
+                  memory: {{ .Values.paperFleet.resources.requests.memory }}
+                  cpu: {{ .Values.paperFleet.resources.requests.cpu }}
+                limits:
+                  memory: {{ .Values.paperFleet.resources.limits.memory }}
+                  cpu: {{ .Values.paperFleet.resources.limits.cpu }}
+              volumeMounts:  # These will be injected into /opt/paper using Palimpsest by the entrypoint
+                - name: paper-base-config
+                  mountPath: /overlays/base
+                  readOnly: true
+                - name: paper-env-config
+                  mountPath: /overlays/env
+                  readOnly: true
+                - name: velocity-forwarding
+                  mountPath: /opt/paper/forwarding.secret
+                  subPath: forwarding.secret
+                  readOnly: true
+                - name: world
+                  mountPath: /mnt/world
+                  readOnly: true
+                - name: realm-paper-base
+                  mountPath: /mnt/realm-paper-base
+                  readOnly: true
+              env:
+                - name: VELAGONES_GRPC_PORT
+                  value: "50051"
+                - name: DEBUGGER_ENABLED
+                  value: "{{ .Values.paperFleet.debugger }}"
+                - name: JVM_MEMORY
+                  value: "{{ .Values.paperFleet.jvm.memory }}"
+          volumes:
+            - name: paper-base-config
+              configMap:
+                name: paper-base-config
+            - name: paper-env-config
+              configMap:
+                name: paper-env-config
+            - name: velocity-forwarding
+              secret:
+                secretName: velocity-forwarding-secret
+                items:
+                  - key: forwarding.secret
+                    path: forwarding.secret
+            - name: world
+              persistentVolumeClaim:
+                claimName: world-pvc
+                readOnly: true
+            - name: realm-paper-base
+              persistentVolumeClaim:
+                claimName: realm-paper-base-pvc
+                readOnly: true

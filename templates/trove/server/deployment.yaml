@@ -1,0 +1,60 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: trove-server
+  labels:
+    app: trove-server
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: trove-server
+  template:
+    metadata:
+      labels:
+        app: trove-server
+    spec:
+      containers:
+        - name: trove-server
+          image: "{{ .Values.trove.server.image }}:{{ .Values.trove.server.tag }}"
+          resources:
+            requests:
+              cpu: {{ .Values.trove.server.resources.requests.cpu }}
+              memory: {{ .Values.trove.server.resources.requests.memory }}
+            limits:
+              cpu: {{ .Values.trove.server.resources.limits.cpu }}
+              memory: {{ .Values.trove.server.resources.limits.memory }}
+          ports:
+            - containerPort: {{ .Values.trove.server.port }}
+          env:
+            - name: "SCYLLA_HOSTS"
+              value: "trove-scylladb"
+            - name: "SCYLLA_PORT"
+              value: "9042"
+            - name: "SCYLLA_KEYSPACE"
+              value: "trove"
+            - name: "TROVE_SERVER_PORT"
+              value: "{{ .Values.trove.server.port }}"
+      initContainers:
+        - name: scylladb-schema-init
+          image: nuvo/docker-cqlsh:latest
+          env:
+            - name: CQLSH_HOST
+              value: "trove-scylladb"
+            - name: CQLSH_PORT
+              value: "{{ .Values.trove.scylladb.port }}"
+          command: ["/bin/sh", "-c"]
+          args:
+            - |
+              echo "Waiting for ScyllaDB to be ready...";
+              until cqlsh -e 'describe cluster'; do sleep 2; done;
+              echo "Applying schema...";
+              cqlsh -f /init/schema.cql;
+              echo "Done. Stopping...";
+          volumeMounts:
+            - name: cql-schema
+              mountPath: /init
+      volumes:
+        - name: cql-schema
+          configMap:
+            name: trove-server-init-cql

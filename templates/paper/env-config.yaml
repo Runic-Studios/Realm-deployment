@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: paper-env-config
+  namespace: {{ .Values.namespace }}
+data:
+{{- $env := .Values.config.env }}
+{{- $envConfigPath := printf "config/env/%s/paper/**" $env }}
+{{- range $path, $content := .Files.Glob $envConfigPath }}
+  {{- $key := $path | trimPrefix (printf "config/env/%s/paper/" $env) | replace "/" "__" }}
+  {{ $key }}: |-
+{{ toString $content | indent 4 }}
+{{- end }}
+

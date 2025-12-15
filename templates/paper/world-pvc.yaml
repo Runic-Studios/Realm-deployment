@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: world-pvc
+  namespace: {{ .Values.namespace }}
+spec:
+  accessModes:
+    - ReadOnlyMany
+  resources:
+    requests:
+      storage: 2Gi
+  storageClassName: manual
+  volumeName: world-pv-{{ .Values.namespace }}
+

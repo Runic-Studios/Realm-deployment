@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: realm-velocity-base-pvc
+  namespace: {{ .Values.namespace }}
+spec:
+  accessModes:
+    - ReadOnlyMany
+  resources:
+    requests:
+      storage: 200Mi
+  storageClassName: manual
+  volumeName: realm-velocity-base-pv-{{ .Values.namespace }}
+

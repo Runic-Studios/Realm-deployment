@@ -1,0 +1,60 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.velocity.deployment.name }}
+  namespace: {{ .Values.namespace }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: {{ .Values.velocity.deployment.name }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.velocity.deployment.name }}
+    spec:
+      dnsPolicy: None
+      dnsConfig:
+        nameservers:
+          - 1.1.1.1
+          - 8.8.8.8
+      serviceAccountName: velocity-sa
+      containers:
+        - name: velocity
+          image: "{{ .Values.velocity.deployment.image }}:{{ .Values.velocity.deployment.tag }}"
+          ports:
+            - name: minecraft
+              containerPort: {{ .Values.velocity.service.port }}
+            - name: autoscale
+              containerPort: {{ .Values.velocity.service.autoscalePort }}
+          volumeMounts:  # These will be injected into /opt/velocity using Palimpsest in the entrypoint
+            - name: velocity-base-config
+              mountPath: /overlays/base
+              readOnly: true
+            - name: velocity-env-config
+              mountPath: /overlays/env
+              readOnly: true
+            - name: velocity-forwarding
+              mountPath: /opt/velocity/forwarding.secret
+              subPath: forwarding.secret
+              readOnly: true
+            - name: realm-velocity-base
+              mountPath: /mnt/realm-velocity-base
+              readOnly: true
+      volumes:
+        - name: velocity-base-config
+          configMap:
+            name: velocity-base-config
+        - name: velocity-env-config
+          configMap:
+            name: velocity-env-config
+        - name: velocity-forwarding
+          secret:
+            secretName: velocity-forwarding-secret
+            items:
+              - key: forwarding.secret
+                path: forwarding.secret
+        - name: realm-velocity-base
+          persistentVolumeClaim:
+            claimName: realm-velocity-base-pvc
+            readOnly: true

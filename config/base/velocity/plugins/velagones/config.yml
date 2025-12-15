@@ -1,0 +1,18 @@
+selector:
+  type: distributed
+
+fleets:
+  - name: paper-fleet
+    serverCapacity: 20
+    autoscaler:
+      hostPort: 7070
+      minServers: 1
+      type: default
+      default:
+        capacityFactor: 1.5
+        up:
+          minPlayersBefore: 10
+          minSecondsBefore: 120
+        down:
+          minSecondsBefore: 300
+          hysteresis: 1.2

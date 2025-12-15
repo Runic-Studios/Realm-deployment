@@ -1,0 +1,7 @@
+namespace: realm
+
+config:
+  env: realm
+
+ingress:
+  entryPoint: realm

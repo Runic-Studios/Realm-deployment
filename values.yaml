@@ -1,0 +1,41 @@
+namespace: realm
+paperFleet:
+  name: paper-fleet
+  replicas: 1
+  image: registry.runicrealms.com/build/realm-paper
+  tag: "d017a2f"
+  debugger: "0"
+  resources:
+    requests:
+      memory: 2000Mi
+      cpu: 1000m
+    limits:
+      memory: 4000Mi
+      cpu: 1500m
+  jvm:
+    memory: 3250
+velocity:
+  deployment:
+    name: velocity
+    image: registry.runicrealms.com/build/realm-velocity
+    tag: "465cbde"
+  service:
+    type: ClusterIP
+    port: 25565
+    autoscalePort: 7070
+trove:
+  scylladb:
+    port: 9042
+  server:
+    image: registry.runicrealms.com/build/trove-server
+    tag: "9678361"
+    port: 9090
+    resources:
+      requests:
+        cpu: "250m"
+        memory: "256Mi"
+      limits:
+        cpu: "500m"
+        memory: "512Mi"
+ingress:
+  entryPoint: realm-dev
