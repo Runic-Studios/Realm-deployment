@@ -39,5 +39,5 @@ All of these different layers are merged with [Palimpsest](https://github.com/Ru
 - Looking to modify resource limits? This is in this repository.
   - `values.yml` has some templated resource limits that can be overwritten by the env-specific `XXX-values.yaml` files.
   - JVM memory limits are also passed through here (via env-var into the pod)
-- Looking to modify Kubernetes resources that aren't game related (ArgoCD, Jenkins, Harbor, Nexus, Agones, Etc)? Check [Deploy](https://github.com/runic-studios/Deploy).
+- Looking to modify Kubernetes resources that aren't game related (ArgoCD, ARC, Harbor, Reposilite, Agones, Etc)? Check [Deploy](https://github.com/runic-studios/Deploy).
   - This repository contains a static Kustomization stack for deploying everything in the cluster.
