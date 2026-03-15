@@ -43,6 +43,10 @@ spec:
                   mountPath: /opt/paper/forwarding.secret
                   subPath: forwarding.secret
                   readOnly: true
+                - name: mongodb
+                  mountPath: /opt/paper/mongodb.secret
+                  subPath: mongodb.secret
+                  readOnly: true
                 - name: world
                   mountPath: /mnt/world
                   readOnly: true
@@ -69,6 +73,12 @@ spec:
                 items:
                   - key: forwarding.secret
                     path: forwarding.secret
+            - name: mongodb
+              secret:
+                secretName: mongodb-secret
+                items:
+                  - key: mongodb.secret
+                    path: mongodb.secret
             - name: world
               persistentVolumeClaim:
                 claimName: world-pvc
