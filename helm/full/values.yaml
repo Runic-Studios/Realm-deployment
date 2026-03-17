@@ -1,9 +1,9 @@
 namespace: realm
 paperFleet:
-  name: paper-fleet
+  name: rr-fleet
   replicas: 1
   image: registry.runicrealms.com/build/realm-paper
-  tag: "d017a2f"
+  tag: "9b0b06a"
   debugger: "0"
   resources:
     requests:
@@ -18,7 +18,7 @@ velocity:
   deployment:
     name: velocity
     image: registry.runicrealms.com/build/realm-velocity
-    tag: "465cbde"
+    tag: "4b373e5"
   service:
     type: ClusterIP
     port: 25565
@@ -28,7 +28,7 @@ trove:
     port: 9042
   server:
     image: registry.runicrealms.com/build/trove-server
-    tag: "9678361"
+    tag: "13404a5"
     port: 9090
     resources:
       requests:

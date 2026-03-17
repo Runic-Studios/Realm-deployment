@@ -16,3 +16,5 @@ fleets:
         down:
           minSecondsBefore: 300
           hysteresis: 1.2
+
+track-rogues: true

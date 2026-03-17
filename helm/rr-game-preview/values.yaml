@@ -1,0 +1,17 @@
+namespace: realm-dev
+gameserver:
+  name: rr-game-preview
+  image: registry.runicrealms.com/build/realm-paper
+  tag: "18bb30a"
+  debugger: "1"
+  resources:
+    requests:
+      memory: 2000Mi
+      cpu: 1000m
+    limits:
+      memory: 4000Mi
+      cpu: 1500m
+  jvm:
+    memory: 3250
+prTag: ""   # overridden by ArgoCD ApplicationSet with the PR number
+headSha: "" # overridden by ArgoCD ApplicationSet with the head commit SHA
