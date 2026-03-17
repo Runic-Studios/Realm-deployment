@@ -1,0 +1,16 @@
+namespace: realm-dev
+gameserver:
+  name: gameserver-preview
+  image: registry.runicrealms.com/build/realm-paper
+  tag: "18bb30a"
+  debugger: "1"
+  resources:
+    requests:
+      memory: 2000Mi
+      cpu: 1000m
+    limits:
+      memory: 4000Mi
+      cpu: 1500m
+  jvm:
+    memory: 3250
+# pr-tag should be added by the ArgoCD application set

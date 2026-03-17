@@ -1,7 +1,12 @@
-
 # Realm Deployment Stack
 
-This repository contains a Helm chart for deploying game-related resources into a single namespace.
+This repository contains 2 Helm charts for deploying game-related resources into a single namespace.
+
+1. The first chart, under `helm/full`, is for deploying an entire realm namespace (either `realm` or `realm-dev`, etc.). It contins all of the required components (ingress, velocity proxy, config maps, etc)
+
+2. The second chart, under `helm/preview`, is for deploying a single gameserver in the `realm-dev` namespace which is for branch build previews. This chart is managed by an ArgoCD `ApplicationSet` and may be deployed several times.
+
+## Full Chart
 
 The intent is for this chart to be fully managed by ArgoCD, deploying into namespaces like `realm-dev`/`realm-stage`/`realm` depending on the branch.
 
@@ -9,6 +14,12 @@ The major components are:
 - `templates/paper`: contains manifests for deploying the Runic Realms Agones game fleet of Paper servers
 - `templates/velocity`: contains manifests for deploying a Velagones-Managed Velocity Proxy
 - `templates/trove`: contains manifests for deploying a ScyllaDB instance and our custom wrapper around it,  [Trove](https://github.com/runic-studios/trove)
+
+## Preview Chart
+
+This chart is deployed in the same namespace as the full `realm-dev` one, as a singular gameserver in that environment.
+
+It will be deployed many times through ApplicationSets for PR branch build previews.
 
 ## Configuring Our Servers
 
