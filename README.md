@@ -31,15 +31,15 @@ Global configuration can go in two locations (that are used for different purpos
 - `Realm-Paper-Base`/`Realm-Velocity-Base` repos:
   - These should be modified very infrequently (only between major MC version updates, not game updates)
   - These are pushed to a shared PV that is mounted on every instance, then copied into their local file system
-- `config/base` in this repository:
+- `helm/full/config/base` in this repository:
   - These can be modified for different game releases
 
-Additionally, you can configure environment-specific configuration in this repo through `config/env/XXX`.
+Additionally, you can configure environment-specific configuration in this repo through `helm/full/config/env/XXX`.
 
-Both the `config/base` and `config/env` folders are templated each into a single ConfigMap, then mounted on the pods.
+Both the `helm/full/config/base` and `helm/full/config/env` folders are templated each into a single ConfigMap, then mounted on the pods.
 
 All of these different layers are merged with [Palimpsest](https://github.com/Runic-Studios/Palimpsest), our in-house tool for merging configuration.
-- The order of merging (from lowest to highest) is the `Realm-XXX-Base` repository, then `config/base`, then `config/env/XXX`.
+- The order of merging (from lowest to highest) is the `Realm-XXX-Base` repository, then `helm/full/config/base`, then `helm/full/config/env/XXX`.
 - Palimpsest is capable of merging configuration files themselves, so that keys in higher-priority sources overwrite those that come from lower-priority sources.
 
 ## More Modifications?
@@ -48,7 +48,7 @@ All of these different layers are merged with [Palimpsest](https://github.com/Ru
 - Looking to modify base configuration? Check [Realm-Paper-Base](https://github.com/runic-studios/Realm-Paper) and [Realm-Velocity-Base](https://github.com/runic-studios/Realm-Velocity)
    - These contain the bare-bones set of files required to run a Velocity/Paper server, like server jars, libraries, static configuration, etc
 - Looking to modify resource limits? This is in this repository.
-  - `values.yml` has some templated resource limits that can be overwritten by the env-specific `XXX-values.yaml` files.
+  - `helm/full/values.yml` has some templated resource limits that can be overwritten by the env-specific `helm/full/XXX-values.yaml` files.
   - JVM memory limits are also passed through here (via env-var into the pod)
 - Looking to modify Kubernetes resources that aren't game related (ArgoCD, ARC, Harbor, Reposilite, Agones, Etc)? Check [Deploy](https://github.com/runic-studios/Deploy).
   - This repository contains a static Kustomization stack for deploying everything in the cluster.
