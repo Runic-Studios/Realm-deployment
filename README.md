@@ -4,7 +4,7 @@ This repository contains 2 Helm charts for deploying game-related resources into
 
 1. The first chart, under `helm/full`, is for deploying an entire realm namespace (either `realm` or `realm-dev`, etc.). It contins all of the required components (ingress, velocity proxy, config maps, etc)
 
-2. The second chart, under `helm/preview`, is for deploying a single gameserver in the `realm-dev` namespace which is for branch build previews. This chart is managed by an ArgoCD `ApplicationSet` and may be deployed several times.
+2. The second chart, under `helm/rr-game-preview`, is for deploying a single gameserver in the `realm-dev` namespace which is for branch build previews for RR-Game. This chart is managed by an ArgoCD `ApplicationSet` and may be deployed several times.
 
 ## Full Chart
 
@@ -19,7 +19,7 @@ The major components are:
 
 This chart is deployed in the same namespace as the full `realm-dev` one, as a singular gameserver in that environment.
 
-It will be deployed many times through ApplicationSets for PR branch build previews.
+It will be deployed many times through ApplicationSets for PR branch build previews for RR-Game.
 
 ## Configuring Our Servers
 
