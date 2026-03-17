@@ -3,7 +3,7 @@ paperFleet:
   name: paper-fleet
   replicas: 1
   image: registry.runicrealms.com/build/realm-paper
-  tag: "7c487a2"
+  tag: "4b22d7c"
   debugger: "0"
   resources:
     requests:
