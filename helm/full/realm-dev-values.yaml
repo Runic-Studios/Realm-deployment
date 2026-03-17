@@ -8,3 +8,4 @@ ingress:
 
 paperFleet:
   debugger: "1"
+  name: rr-fleet-dev

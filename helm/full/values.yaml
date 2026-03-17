@@ -1,6 +1,6 @@
 namespace: realm
 paperFleet:
-  name: paper-fleet
+  name: rr-fleet
   replicas: 1
   image: registry.runicrealms.com/build/realm-paper
   tag: "e94f890"

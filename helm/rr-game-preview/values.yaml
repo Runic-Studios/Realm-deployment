@@ -13,4 +13,4 @@ gameserver:
       cpu: 1500m
   jvm:
     memory: 3250
-# pr-tag should be added by the ArgoCD application set
+prTag: "" # overridden by ArgoCD ApplicationSet with the PR number
