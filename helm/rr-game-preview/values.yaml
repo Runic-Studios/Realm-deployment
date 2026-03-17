@@ -1,6 +1,6 @@
 namespace: realm-dev
 gameserver:
-  name: gameserver-preview
+  name: rr-game-preview
   image: registry.runicrealms.com/build/realm-paper
   tag: "18bb30a"
   debugger: "1"
