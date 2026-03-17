@@ -2,7 +2,7 @@ selector:
   type: distributed
 
 fleets:
-  - name: paper-fleet
+  - name: rr-fleet-dev
     serverCapacity: 20
     autoscaler:
       hostPort: 7070
