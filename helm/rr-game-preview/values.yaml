@@ -13,4 +13,5 @@ gameserver:
       cpu: 1500m
   jvm:
     memory: 3250
-prTag: "" # overridden by ArgoCD ApplicationSet with the PR number
+prTag: ""   # overridden by ArgoCD ApplicationSet with the PR number
+headSha: "" # overridden by ArgoCD ApplicationSet with the head commit SHA

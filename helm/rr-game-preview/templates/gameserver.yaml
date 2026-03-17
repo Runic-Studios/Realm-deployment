@@ -21,7 +21,7 @@ spec:
     spec:
       containers:
         - name: realm-paper
-          image: "{{ .Values.gameserver.image }}:pr-{{ .Values.prTag }}"
+          image: "{{ .Values.gameserver.image }}:pr-{{ .Values.prTag }}-{{ substr 0 7 .Values.headSha }}"
           resources:
             requests:
               memory: {{ .Values.gameserver.resources.requests.memory }}
