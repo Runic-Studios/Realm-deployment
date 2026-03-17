@@ -54,9 +54,9 @@ spec:
             - name: VELAGONES_GRPC_PORT
               value: "50051"
             - name: DEBUGGER_ENABLED
-              value: "{{ .Values.paperFleet.debugger }}"
+              value: "{{ .Values.gameserver.debugger }}"
             - name: JVM_MEMORY
-              value: "{{ .Values.paperFleet.jvm.memory }}"
+              value: "{{ .Values.gameserver.jvm.memory }}"
       volumes:
         - name: paper-base-config
           configMap:
