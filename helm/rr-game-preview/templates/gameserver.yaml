@@ -21,6 +21,9 @@ spec:
           container: realm-paper
           portPolicy: None  # Prevents Agones from dynamically allocating a port for gRPC on the node
       template:
+        metadata:
+          annotations:
+            argocd.argoproj.io/ignore-healthcheck: "true"  # Prevent ArgoCD from thinking it is progressing due to Agones sidecar
         spec:
           containers:
             - name: realm-paper
